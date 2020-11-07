@@ -1,0 +1,14 @@
+{
+      "type": "postgres",
+      "host": "35.223.6.99",
+      "username": "postgres",
+      "password": "982666",
+      "database": "postgres",
+      "port":5432,
+      "entities": ["src/modules/**/*entity{.ts,.js}","src/modules/cliente/cliente.view{.ts,.js}"], 
+      "migrations": ["src/database/migrations/*{.ts,.js}"],
+      "synchronize": true,
+      "cli":{ "migrationsDir": "src/database/migrations" }
+  }
+
+  
