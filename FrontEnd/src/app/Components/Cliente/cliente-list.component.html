@@ -1,0 +1,41 @@
+<div class="container">
+    <alert-success [hidden]="!showMessageSuccess">
+        O cliente  foi cadastrado com sucesso!
+    </alert-success>
+    <div class="row">
+        <h1>Clientes</h1>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-primary" (click)="openNewModal()">Novo cliente</button>
+                </td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr *ngFor="let cliente of clienteHttp.clientes;let i=index;" [id]="'tr'+i" >-->
+                <tr *ngFor="let cliente of clientes"> <!-- {data: []} -->
+                    <td>
+                        <a href="javascript:void(0);" (click)="openDetailModal(cliente)">
+                          {{cliente.Id}}
+                        </a>
+                    </td>
+                     <td> {{cliente.Nome}}</td>
+                    <td>
+                        <a href="javascript:void(0)" (click)="openEditModal(cliente)">Editar</a> |
+                        <a href="javascript:void(0)" (click)="openDestroyModal(cliente)">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<cliente-new-modal (onSubmit)="onNewCliente($event)"></cliente-new-modal>
+<cliente-edit-modal [cliente]="clienteToEdit" (onSubmit)="onEditCliente()"></cliente-edit-modal>
+<cliente-delete-modal [cliente]="clienteToDelete" (onDestroy)="onDestroyCliente()"></cliente-delete-modal>

@@ -1,0 +1,20 @@
+{
+      "_type": "postgres",
+      "_host": "35.223.6.99",
+      "_username": "postgres",
+      "_password": "982666",
+      "_database": "postgres",
+
+      "type": "mysql",
+      "host": "mysql741.umbler.com",
+      "username": "quantcapital",
+      "password": "982666berg",
+      "database": "mydb",
+      "port":41890,
+      "entities": ["src/modules/**/*entity{.ts,.js}","src/modules/cliente/cliente.view{.ts,.js}"], 
+      "migrations": ["src/database/migrations/*{.ts,.js}"],
+      "synchronize": true,
+      "cli":{ "migrationsDir": "src/database/migrations" }
+  }
+
+  

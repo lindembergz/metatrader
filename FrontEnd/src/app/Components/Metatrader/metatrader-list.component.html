@@ -1,0 +1,41 @@
+<div class="container">
+    <alert-success [hidden]="!showMessageSuccess">
+        O metatrader foi cadastrado com sucesso!
+    </alert-success>
+    <div class="row">
+        <h1>Metatrader</h1>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-primary" (click)="openNewModal()">Novo Metatrader</button>
+                </td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Servidor</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr *ngFor="let cliente of clienteHttp.clientes;let i=index;" [id]="'tr'+i" >-->
+                <tr *ngFor="let metatrader of metatraders"> <!-- {data: []} -->
+                    <td>
+                        <a href="javascript:void(0);" (click)="openDetailModal(metatrader)">
+                          {{metatrader.Id}}
+                        </a>
+                    </td>
+                     <td> {{metatrader.Servidor}}</td>
+                    <td>
+                        <a href="javascript:void(0)" (click)="openEditModal(metatrader)">Editar</a> |
+                        <a href="javascript:void(0)" (click)="openDestroyModal(metatrader)">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<metatrader-new-modal (onSubmit)="onNewMetatrader($event)"></metatrader-new-modal>
+<metatrader-edit-modal [metatrader]="metatraderToEdit" (onSubmit)="onEditMetatrader($event)"></metatrader-edit-modal>
+<metatrader-delete-modal [metatrader]="metatraderToDelete" (onDestroy)="onDestroyMetatrader($event)"></metatrader-delete-modal>

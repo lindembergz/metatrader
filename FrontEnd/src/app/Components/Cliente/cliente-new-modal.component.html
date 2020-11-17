@@ -1,0 +1,264 @@
+<form (submit)="addCliente()">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">   
+                    <div class="accordion" id="accordionExample"> 
+                        <div class="card"> 
+                            <div class="card-header" id="heading1"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1"> 
+                                        Inicio 
+                                    </button> 
+                                </h5> 
+                            </div>                  
+                             <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Inicio" class="tab-pane">
+                                        <div class="form-group">
+                                            <label>Nome</label>
+                                            <input class="form-control" name="Nome" type="text" [(ngModel)]="cliente.Nome">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>DataNascimento</label>
+                                            <input class="form-control" name="DataNascimento" type="date" [(ngModel)]="cliente.DataNascimento">
+                                        </div>   
+                                        <div class="form-group">
+                                            <label>Estado Civil</label>
+                                            <input class="form-control" name="EstadoCivil" type="text" [(ngModel)]="cliente.EstadoCivil">
+                                        </div>  
+                                        <div class="form-group">
+                                            <label>Profissão</label>
+                                            <input class="form-control" name="Profissao" type="text" [(ngModel)]="cliente.Profissao">
+                                        </div>  
+                                        <div class="form-group">
+                                            <label>Nacionalidade</label>
+                                            <input class="form-control" name="Nacionalidade" type="text" [(ngModel)]="cliente.Nacionalidade">
+                                        </div>  
+                                        <div class="form-group">
+                                            <label>Responsável legal</label>
+                                            <input class="form-control" name="Responsavel" type="text" [(ngModel)]="cliente.Responsavel">
+                                        </div> 
+                                    </div>
+                                </div> 
+                            </div>         
+                        </div>         
+                        
+                        <div class="card"> 
+                            <div class="card-header" id="heading2"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2"> 
+                                        Documentos 
+                                    </button> 
+                                </h5> 
+                            </div> 
+                            <div id="collapse2" class="collapse hide" aria-labelledby="heading2" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Documentos" class="tab-pane">
+                                        <div class="form-group">
+                                            <label>CPF</label>
+                                            <input class="form-control" name="Documento" type="text" [(ngModel)]="cliente.Documento.CPF">
+                                        </div>  
+                                        <div class="form-group">
+                                            <label>RG</label>
+                                            <input class="form-control" name="RG" type="text" [(ngModel)]="cliente.Documento.RG">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Orgao Expeditor</label>
+                                            <input class="form-control" name="OrgaoExpeditorRG" type="text" [(ngModel)]="cliente.Documento.OrgaoExpeditorRG">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Data Emissão</label>
+                                            <input class="form-control" name="DataEmissaoRG" type="date" [(ngModel)]="cliente.Documento.DataEmissaoRG">
+                                        </div> 
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div> 
+
+                        <div class="card"> 
+                            <div class="card-header" id="heading3"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3"> 
+                                        Cônjuge 
+                                    </button> 
+                                </h5> 
+                            </div> 
+                            <div id="collapse3" class="collapse hide" aria-labelledby="heading3" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Conjuge" class="tab-pane">
+                                        <div class="form-group">
+                                            <label>Nome</label>
+                                            <input class="form-control" name="NomeConjuge" type="text" [(ngModel)]="cliente.Conjuge.Nome">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>CPF </label>
+                                            <input class="form-control" name="CPFConjuge" type="text" [(ngModel)]="cliente.Conjuge.CPF">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>RG </label>
+                                            <input class="form-control" name="RGConjuge" type="text" [(ngModel)]="cliente.Conjuge.RG">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Celular </label>
+                                            <input class="form-control" name="CelularConjuge" type="text" [(ngModel)]="cliente.Conjuge.Celular">
+                                        </div> 
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+
+                        <div class="card"> 
+                            <div class="card-header" id="heading2"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4"> 
+                                        Endereço 
+                                    </button> 
+                                </h5> 
+                            </div> 
+                            <div id="collapse4" class="collapse hide" aria-labelledby="heading4" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Endereco" class="tab-pane">                            
+                                        <div class="form-group">
+                                            <label>Logradouro</label>
+                                            <input class="form-control" name="Endereco" type="text" [(ngModel)]="cliente.Endereco.Logradouro">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Número</label>
+                                            <input class="form-control" name="Numero" type="text" [(ngModel)]="cliente.Endereco.Numero">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Bairro</label>
+                                            <input class="form-control" name="Bairro" type="text" [(ngModel)]="cliente.Endereco.Bairro">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Município</label>
+                                            <input class="form-control" name="Municipio" type="text" [(ngModel)]="cliente.Endereco.Municipio">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>UF</label>
+                                           <!-- <select name="UF">
+                                                <option value="AC">AC</option>
+                                                <option value="AL">AL</option>
+                                                <option value="AM">AM</option>
+                                                <option value="MA">MA</option>
+                                                <option value="BH">BH</option>
+                                                <option value="BA">BA</option>
+                                                <option value="CE">CE</option>
+                                                <option value="ES">ES</option>
+                                                <option value="PI">PI</option>
+                                                <option value="SP">SP</option>
+                                                <option value="SE">SE</option>
+                                                <option value="RJ">RJ</option>
+                                                <option value="RS">RS</option>
+                                                <option value="RO">RO</option>
+                                                <option value="RN">RN</option>
+                                                <option value="RR">RR</option>
+                                                <option value="MT">MT</option>
+                                                <option value="MS">MS</option>
+                                                <option value="TO">TO</option>
+                                            </select>
+                                            -->
+                                            <input class="form-control" name="UF" type="text" [(ngModel)]="cliente.Endereco.UF">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Cep</label>
+                                            <input class="form-control" name="Cep" type="text" [(ngModel)]="cliente.Endereco.Cep">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>País</label>
+                                            <input class="form-control" name="Pais" type="text" [(ngModel)]="cliente.Endereco.Pais">
+                                        </div>   
+                                        <div class="form-group">
+                                            <label>Nº Celular</label>
+                                            <input class="form-control" name="Celular" type="text" [(ngModel)]="cliente.Celular">
+                                        </div>                            
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <div class="card"> 
+                            <div class="card-header" id="heading2"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse5" expanded="false" aria-controls="collapse5"> 
+                                        Dados Bancário 
+                                    </button> 
+                                </h5> 
+                            </div> 
+                            <div id="collapse5" class="collapse hide" aria-labelledby="heading5" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Financeiro" class="tab-pane">                            
+                                        <div class="form-group">
+                                            <label>Banco</label>
+                                            <input class="form-control" name="Banco" type="text" [(ngModel)]="cliente.Banco.Nome">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Agência</label>
+                                            <input class="form-control" name="Agencia" type="text" [(ngModel)]="cliente.Banco.Agencia">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Nº Conta</label>
+                                            <input class="form-control" name="Conta" type="text" [(ngModel)]="cliente.Banco.Conta">
+                                        </div>   
+                                        <div class="form-group">
+                                            <label>TipoConta</label>
+                                            <input class="form-control" name="TipoConta" type="text" [(ngModel)]="cliente.Banco.TipoConta">
+                                        </div>    
+                                        <div class="form-group">
+                                            <label>Aporte </label>
+                                            <input class="form-control" name="AporteFinanceiro" type="number" [(ngModel)]="cliente.Banco.AporteFinanceiro">
+                                        </div>                     
+                                        <div class="form-group">
+                                            <label>TipoMoeda </label>
+                                            <input class="form-control" name="TipoMoeda" type="text" [(ngModel)]="cliente.Banco.TipoMoeda">
+                                        </div>                                             
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <div class="card"> 
+                            <div class="card-header" id="heading6"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6"> 
+                                        Acesso 
+                                    </button> 
+                                </h5> 
+                            </div> 
+                            <div id="collapse6" class="collapse hide" aria-labelledby="heading6" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Acesso" class="tab-pane">                            
+                                        <div class="form-group">
+                                            <label>Login</label>
+                                            <input class="form-control" name="Login" type="text" [(ngModel)]="cliente.Login">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Senha</label>
+                                            <input class="form-control" name="Senha" type="password" [(ngModel)]="cliente.Senha">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Confirma senha</label>
+                                            <input class="form-control" name="Confirma" type="password">
+                                        </div>                                                                                      
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>  
+                    </div>     
+               </div>    
+                                                
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

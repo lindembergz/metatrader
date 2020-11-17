@@ -1,0 +1,65 @@
+<form (submit)="addParticipacao()">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Participacao</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">   
+                    <div class="accordion" id="accordionExample"> 
+                        <div class="card"> 
+                            <div class="card-header" id="heading1"> 
+                                <h5 class="mb-0"> 
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1"> 
+                                        Inicio 
+                                    </button> 
+                                </h5> 
+                            </div>                  
+                             <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordionExample"> 
+                                <div class="card-body"> 
+                                    <div id="Participacao" class="tab-pane">
+                                        <div class="form-group">
+                                            <label>Cliente</label>     
+                                                           
+                                            <select  class="form-control" [(ngModel)]="clienteSelected" name="clienteSelected">
+                                                <option value=""></option> 
+                                                <option *ngFor="let cliente of clientes" [ngValue]="cliente">
+                                                 {{cliente.Nome}}
+                                                </option>
+                                            </select> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Metatrader</label>
+                                            
+                                            <select  class="form-control" [(ngModel)]="metatraderSelected" name="metatraderSelected">
+                                                <option value=""></option> 
+                                                <option *ngFor="let metatrader of metatraders" [ngValue]="metatrader">
+                                                 {{metatrader.Servidor}}
+                                                </option>
+                                            </select>  
+                                                                               
+                                        </div>   
+                                        <div class="form-group">
+                                            <label>% Participação</label>
+                                            <input class="form-control" name="Percentual" type="number" [(ngModel)]="participacao.Percentual">
+                                        </div>  
+
+                                    </div>
+                                </div> 
+                            </div>         
+                        </div>                 
+                    </div>     
+               </div>                                                   
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,45 @@
+<div class="container">
+    <alert-success [hidden]="!showMessageSuccess">
+        O participacao foi cadastrada com sucesso!
+    </alert-success>
+    <div class="row">
+        <h1>Participacao</h1>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-primary" (click)="openNewModal()">Nova participacao</button>
+                </td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Cliente</th>
+                <th>Metatrader</th>
+                <th>Participação %</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr *ngFor="let cliente of clienteHttp.clientes;let i=index;" [id]="'tr'+i" >-->
+                <tr *ngFor="let participacao of participacoes"> <!-- {data: []} -->
+                    <td>
+                        <a href="javascript:void(0);" (click)="openDetailModal(participacao)">
+                            {{participacao.Id}}
+                        </a>
+                    </td>
+                     <td> {{participacao.Cliente.Nome}}</td>
+                     <td> {{participacao.Metatrader.Servidor}}</td>
+                     <td> {{participacao.Percentual}}</td>
+                    <td>
+                        <a href="javascript:void(0)" (click)="openEditModal(participacao)">Editar</a> |
+                        <a href="javascript:void(0)" (click)="openDestroyModal(participacao)">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<participacao-new-modal (onSubmit)="onNewParticipacao($event)"></participacao-new-modal>
+<participacao-edit-modal [participacao]="participacaoToEdit" (onSubmit)="onEditParticipacao($event)"></participacao-edit-modal>
+<participacao-delete-modal [participacao]="participacaoToDelete" (onDestroy)="onDestroyParticipacao($event)"></participacao-delete-modal>
