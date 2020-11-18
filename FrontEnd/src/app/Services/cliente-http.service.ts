@@ -18,8 +18,8 @@ interface ListHttpParams {
 })
 export class ClienteHttpService {
 
-    //private baseUrl = 'http://quantcapitalcorp.com/api/clientes';
-    private baseUrl = 'http://127.0.0.1:3000/api/clientes';
+    private baseUrl = 'http://quantcapitalcorp.com/api/clientes';
+    //private baseUrl = 'http://127.0.0.1:3000/api/clientes';
 
 
     constructor(private http: HttpClient) {

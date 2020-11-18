@@ -8,6 +8,7 @@ import { DatabaseModule } from './database/database.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { MetatraderModule } from './modules/MetaTrader/metatrader.module';
 import { ParticipacaoModule } from './modules/Participacao/participacao.module';
+import { HistoricoModule } from './modules/Historico/historico.module';
 
 @Module({  
   controllers: [AppController],
@@ -18,6 +19,7 @@ import { ParticipacaoModule } from './modules/Participacao/participacao.module';
     ClienteModule,
     MetatraderModule,
     ParticipacaoModule,
+    HistoricoModule,
   
   ],
 })

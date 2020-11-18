@@ -1,4 +1,8 @@
+export interface Usuario{
+  email: string;
+  senha: string;
 
+}
 
 export interface Metatrader {
     Id: number;

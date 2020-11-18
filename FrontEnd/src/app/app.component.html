@@ -4,8 +4,12 @@
     }
     
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;font-weight: 600;
     }
+    .lg-aa-label--edicao {
+    font-weight: 600;
+    color: #000;
+}
     
     /* Style the header */
     header {
@@ -67,21 +71,23 @@
 <header>
     <h2>Painel de controle</h2>
   </header>
-
-
   <section>
-    <nav>
-      <ul>
-        <a routerLink="/api/clientes">Clientes</a>
-      </ul> 
-      <ul>
-        <a routerLink="/api/metatraders">MetaTrader</a>
-      </ul> 
-      <ul>
-        <a routerLink="/api/participacoes">Participacao</a>
-      </ul> 
+    <nav class="navbar-light"  *ngIf="mostrarMenu">
+        <ul>
+          <a routerLink="/clientes">Clientes</a>
+        </ul> 
+        <ul>
+          <a routerLink="/metatraders">MetaTrader</a>
+        </ul> 
+        <ul>
+          <a routerLink="/participacoes">Participacao</a>
+        </ul> 
     </nav>
 
     <router-outlet></router-outlet>
 
+    
+
 </section>
+
+

@@ -2,9 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
-import { SalaryColorDirective } from './Directives/salary-color.directive';
+import { FormsModule} from '@angular/forms';
 
+import { SalaryColorDirective } from './Directives/salary-color.directive';
 
 import { ClienteListComponent} from './Components/Cliente/cliente-list.component';
 import { ClienteNewModalComponent } from './Components/Cliente/cliente-new-modal.component';
@@ -21,6 +21,8 @@ import { ParticipacaoNewModalComponent } from './Components/Participacao/partici
 import { ParticipacaoEditModalComponent } from './Components/Participacao/participacao-edit-modal.component';
 import { ParticipacaoDeleteModalComponent } from './Components/Participacao/participacao-delete-modal.component';
 
+import { LoginComponent } from './Components/Login/login.component';
+import { AuthService } from './Components/Login/AuthService';
 
 import { AlertSuccessComponent } from './Components/alert-success/alert-success.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -31,6 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ClienteHttpService } from './Services/cliente-http.service';
 import { ParticipacaoHttpService } from './Services/participacao-http.service';
 import { MetatraderHttpService } from './Services/metatrader-http.service';
+
 
 
 
@@ -55,16 +58,21 @@ import { MetatraderHttpService } from './Services/metatrader-http.service';
         ParticipacaoDeleteModalComponent,
 
         AlertSuccessComponent,      
-        MyCurrencyPipe
+        MyCurrencyPipe, 
+
+        LoginComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
-        //ReactiveFormsModule
+
     ],
-    providers: [ClienteHttpService,MetatraderHttpService, ParticipacaoHttpService],
+    providers: [AuthService, 
+                ClienteHttpService,
+                MetatraderHttpService, 
+                ParticipacaoHttpService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -18,8 +18,8 @@ interface ListHttpParams {
 })
 export class ParticipacaoHttpService {
 
-    //private baseUrl = 'http://quantcapitalcorp.com/api/participacoes';
-    private baseUrl = 'http://127.0.0.1:3000/api/participacoes';
+    private baseUrl = 'http://quantcapitalcorp.com/api/participacoes';
+    //private baseUrl = 'http://127.0.0.1:3000/api/participacoes';
 
     constructor(private http: HttpClient) {
     }
