@@ -22,9 +22,8 @@ export class Historico extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
     Id: number;    
    
-    @CreateDateColumn({type:'datetime', default: () => 'now()'})
+    @CreateDateColumn({type:'datetime'})
     DataHora:Date; 
-
 
     @Column({type: 'double',nullable:true})
     Valor: string;

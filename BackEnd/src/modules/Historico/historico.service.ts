@@ -21,5 +21,16 @@ export class HistoricoService {
         return saveHistorico;
     }
 
+    async getAll(): Promise<Historico[]>
+    {
+        const historicos: Historico[] = await this._historicoRepository.find();//{where: {Metatrader.id:'Active'}})//({where: {Status:'Active' }})
+        return historicos;
+    }
+    
+    async get(id:number): Promise<Historico>{
+        const historico: Historico = await this._historicoRepository.
+        findOne(id, {where: {Status:'Active'}});
+        return historico;
+    }
 
 }

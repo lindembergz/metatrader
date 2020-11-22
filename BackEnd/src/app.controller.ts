@@ -10,7 +10,7 @@ export class AppController {
     return `
     <html>
     <body>
-        ALO MUNDO
+        Oi ?
     </body>
     </html>
     `;

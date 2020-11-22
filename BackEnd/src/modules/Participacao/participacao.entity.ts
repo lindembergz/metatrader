@@ -43,4 +43,7 @@ export class Participacao extends BaseEntity{
     
     @Column({type: 'real',nullable:true, default:0}) 
     Percentual: Double;
+
+    @Column({type: 'real',nullable:true, default:0}) 
+    Taxa: Double;
 }

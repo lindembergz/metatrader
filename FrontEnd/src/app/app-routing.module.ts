@@ -7,6 +7,8 @@ import { ParticipacaoListComponent } from './Components/Participacao/participaca
 import { LoginComponent } from './Components/Login/login.component';
 import { AppComponent } from './app.component';
 
+import { DashboardComponent } from './Components/DashBoard/dashboard.component';
+
 
 const routes: Routes = [
   { path: 'app', component: AppComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'clientes', component: ClienteListComponent},
   { path: 'metatraders', component: MetatraderListComponent},
-   { path: 'participacoes', component: ParticipacaoListComponent}
+  { path: 'participacoes', component: ParticipacaoListComponent},
+
+  { path: 'dashboard/:Nome', component: DashboardComponent}
   ];
 
 @NgModule({

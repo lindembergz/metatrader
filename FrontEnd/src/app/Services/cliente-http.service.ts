@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Cliente} from '../models';
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {BaseURL} from '../constants';
+
 
 interface ListHttpParams {
     search;
@@ -18,9 +20,32 @@ interface ListHttpParams {
 })
 export class ClienteHttpService {
 
-    private baseUrl = 'http://quantcapitalcorp.com/api/clientes';
-    //private baseUrl = 'http://127.0.0.1:3000/api/clientes';
+    private baseUrl = BaseURL+'clientes';
+  
+     httpOptions = {
+        headers: new HttpHeaders({ 
+            'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*',
+          'Authorization':'authkey',
+          'userid':'1',
+          'Access-Control-Allow-Methods':
+          'GET,PUT,POST,DELETE,getByLogin,OPTIONS',
+          'Access-Control-Allow-Headers': 
+          'Content-Type, Authorization, Content-Length, X-Requested-With, Accept'
+        })
+      };
 
+    
+      errorHandler(error) {
+        let errorMessage = '';
+        if(error.error instanceof ErrorEvent) {
+          errorMessage = error.error.message;
+        } else {
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        console.log(errorMessage);
+        return throwError(errorMessage);
+     }
 
     constructor(private http: HttpClient) {
     }
@@ -51,6 +76,38 @@ export class ClienteHttpService {
                 catchError((responseError) => this.handleError(responseError))
             );
     }
+
+    getByLogin( login: string , senha: string ): Observable<Cliente> {     
+
+        let data:  Cliente = {
+            Id: 0,
+            Nome: '',    
+            Login: '',    
+            Senha: '', 
+            Celular: '',  
+            DataNascimento: null, 
+            Profissao: '', 
+            Nacionalidade: 'BRASILEIRO', 
+            EstadoCivil: '', 
+            Responsavel: '',
+            Documento:{}, 
+            Endereco: {Pais:'BRASIL'},      
+            Conjuge: {}, 
+            Banco: {}
+        };
+
+        data.Login = login;
+        data.Senha = senha;
+        this.httpOptions
+
+        
+        return  this.http.post<Cliente>('http://127.0.0.1:4000/api/clientes/getByLogin',
+                                        JSON.stringify('{"Cliente":{"Login":"BERG","Senha":"123"}}'),
+                                        {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }})
+                .pipe(
+                    catchError((responseError) => this.handleError(responseError))
+                );                  
+    }   
 
     create(data: Cliente): Observable<Cliente> {
 

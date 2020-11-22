@@ -37,6 +37,15 @@ export class ClienteController {
         return clientes;
     }
 
+    /*
+    @Post('getByLogin')
+    async getByLogin(@Body() cliente: Cliente):Promise<Cliente>
+    {
+      const clienteCreated = await this._clienteService.getByLogin(cliente);
+      return clienteCreated;
+    }
+    */
+
     @Post()
     async createCliente(@Body() cliente: Cliente):Promise<Cliente>
     {

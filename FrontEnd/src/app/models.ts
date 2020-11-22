@@ -1,6 +1,10 @@
+
+
 export interface Usuario{
-  email: string;
-  senha: string;
+  Login: string;
+  Senha: string;
+  TipoUsuario: string;
+  Soucliente: string;
 
 }
 
@@ -36,6 +40,7 @@ export interface Participacao {
     Status?: string;
     Cliente  : Cliente;  
     Metatrader  : Metatrader; 
+    Taxa?:number;
 }
 
 export interface ClienteEndereco {

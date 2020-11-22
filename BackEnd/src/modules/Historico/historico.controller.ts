@@ -16,7 +16,13 @@ export class HistoricoController {
 
     constructor( private readonly _historicoService: HistoricoService ) { }
     
-
+    //@Get(':id')
+    @Get()
+    async gethistoricos():Promise<Historico[]>
+    {
+        const historico = await this._historicoService.getAll()
+        return historico;
+    }
 
     @Post()
     async createHistorico(@Body() historico: Historico):Promise<Historico>

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule} from '@angular/core'; 
 
 import {AppComponent} from './app.component';
 import { FormsModule} from '@angular/forms';
@@ -22,9 +22,10 @@ import { ParticipacaoEditModalComponent } from './Components/Participacao/partic
 import { ParticipacaoDeleteModalComponent } from './Components/Participacao/participacao-delete-modal.component';
 
 import { LoginComponent } from './Components/Login/login.component';
-import { AuthService } from './Components/Login/AuthService';
+
 
 import { AlertSuccessComponent } from './Components/alert-success/alert-success.component';
+        
 import {HttpClientModule} from '@angular/common/http';
 
 import { MyCurrencyPipe } from './Pipes/my-currency.pipe';
@@ -34,7 +35,9 @@ import { ClienteHttpService } from './Services/cliente-http.service';
 import { ParticipacaoHttpService } from './Services/participacao-http.service';
 import { MetatraderHttpService } from './Services/metatrader-http.service';
 
-
+import { DashboardComponent } from './Components/DashBoard/dashboard.component';
+import {AutenticadorHttpService} from './Services/autenticador-http.service';
+import { LoginController } from './Components/Login/login.controller';
 
 
 @NgModule({
@@ -60,19 +63,25 @@ import { MetatraderHttpService } from './Services/metatrader-http.service';
         AlertSuccessComponent,      
         MyCurrencyPipe, 
 
-        LoginComponent
+        LoginComponent,
+        
+        DashboardComponent,
+
     ],
     imports: [
+        
         BrowserModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
 
     ],
-    providers: [AuthService, 
+    providers: [LoginController, 
+                AutenticadorHttpService,                
                 ClienteHttpService,
                 MetatraderHttpService, 
-                ParticipacaoHttpService],
+                ParticipacaoHttpService,
+                LoginComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

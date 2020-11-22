@@ -23,6 +23,7 @@ export class ParticipacaoEditModalComponent implements OnInit {
     metatraders: Metatrader[] = [];
     metatraderSelected : Metatrader ={ Id: 0,
                                        Servidor: '',    
+                                       Login: '',  
                                       };                   
 
     @Input()

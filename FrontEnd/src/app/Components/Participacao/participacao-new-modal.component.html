@@ -37,7 +37,7 @@
                                             <select  class="form-control" [(ngModel)]="metatraderSelected" name="metatraderSelected">
                                                 <option value=""></option> 
                                                 <option *ngFor="let metatrader of metatraders" [ngValue]="metatrader">
-                                                 {{metatrader.Servidor}}
+                                                 {{metatrader.Login}}
                                                 </option>
                                             </select>  
                                                                                
@@ -46,7 +46,10 @@
                                             <label>% Participação</label>
                                             <input class="form-control" name="Percentual" type="number" [(ngModel)]="participacao.Percentual">
                                         </div>  
-
+                                        <div class="form-group">
+                                            <label>% Taxa de rentabilidade</label>
+                                            <input class="form-control" name="Taxa" type="number" [(ngModel)]="participacao.Taxa">
+                                        </div>  
                                     </div>
                                 </div> 
                             </div>         

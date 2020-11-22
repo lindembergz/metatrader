@@ -9,6 +9,10 @@ import { ClienteModule } from './modules/cliente/cliente.module';
 import { MetatraderModule } from './modules/MetaTrader/metatrader.module';
 import { ParticipacaoModule } from './modules/Participacao/participacao.module';
 import { HistoricoModule } from './modules/Historico/historico.module';
+import { AutenticadorModule } from './modules/Autenticador/autenticador.module';
+
+
+
 
 @Module({  
   controllers: [AppController],
@@ -20,7 +24,8 @@ import { HistoricoModule } from './modules/Historico/historico.module';
     MetatraderModule,
     ParticipacaoModule,
     HistoricoModule,
-  
+    AutenticadorModule,  
+   
   ],
 })
 export class AppModule {

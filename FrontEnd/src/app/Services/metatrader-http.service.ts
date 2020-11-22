@@ -3,6 +3,7 @@ import {Metatrader} from '../models';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {BaseURL} from '../constants';
 
 interface ListHttpParams {
     search;
@@ -18,8 +19,7 @@ interface ListHttpParams {
 })
 export class MetatraderHttpService {
 
-    private baseUrl = 'http://quantcapitalcorp.com/api/metatraders';
-    //private baseUrl = 'http://127.0.0.1:3000/api/metatraders';
+    private baseUrl = BaseURL+'metatraders';
 
     constructor(private http: HttpClient) {
     }

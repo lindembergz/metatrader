@@ -24,36 +24,24 @@
 
                                         <div class="form-group">
                                             <label>Cliente</label>         
-                                                            
-                                            <!-- <select  class="form-control" [(ngModel)]="clienteSelected" name="clienteSelected">
-                                                 <option *ngFor="let cliente of clientes" [ngValue]="cliente">
-                                                 {{cliente.Nome}}
-                                                </option>
-                                            </select> -->
-
                                             <select  class="form-control"  name="clienteSelected">
                                                 <option [ngValue]="i" *ngFor="let i of clientes">{{i.Nome}}</option>
                                             </select>
-
                                         </div>
                                         <div class="form-group">
                                             <label>Metatrader</label>
-                                            {{metatraderSelected.Id}}
-                                           <!-- <select  class="form-control" name="metatraderSelected" [(ngModel)]="metatraderSelected">
-                                                <option   [(ngValue)]="metatraderSelected.Id"  >{{metatraderSelected.Servidor}}</option>
-                                                <option *ngFor="let metatrader of metatraders" [(ngValue)]="metatrader.Id" >
-                                                 {{metatrader.Servidor}}
-                                                </option>                                                
-                                            </select> -->  
-
                                             <select  class="form-control"  name="metatraderSelected">
-                                                <option [ngValue]="i" *ngFor="let i of metatraders">{{i.Servidor}}</option>
+                                                <option [ngValue]="i" *ngFor="let i of metatraders">{{i.Login}}</option>
                                             </select>
                                                                            
                                         </div>  
                                         <div class="form-group">
                                             <label>% Participação</label>
                                             <input class="form-control" name="Percentual" type="number" [(ngModel)]="participacao.Percentual">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>% Taxa de rentabilidade</label>
+                                            <input class="form-control" name="Taxa" type="number" [(ngModel)]="participacao.Taxa">
                                         </div> 
                                     </div>
                                 </div> 

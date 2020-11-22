@@ -36,6 +36,8 @@ export class ClienteService {
         return cliente;
     }
 
+
+
     async getAll(): Promise<Cliente[]>
     {
         const clientes: Cliente[] = await this._clienteRepository.find({where: {Status:'Active' }})
@@ -67,6 +69,18 @@ export class ClienteService {
         const saveCliente = await this._clienteRepository.save(cliente);
         return saveCliente;
     }
+
+   /* async getByLogin(cliente:Cliente): Promise<Cliente>{
+        
+        const c : any = await this._clienteRepository.find({where: {Login:cliente.Login}});
+
+        if (!c)
+        {
+            throw new BadRequestException('usuario nao existe!');
+        }
+        return c;
+    }*/
+    
     async update(id:number, cliente:Cliente): Promise<void>
     {
         const repoEndereco = await getConnection().getRepository(ClienteEndereco);

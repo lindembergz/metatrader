@@ -33,6 +33,7 @@ export class ParticipacaoNewModalComponent implements OnInit {
     metatraders: Metatrader[] = [];
     metatraderSelected : Metatrader ={ Id: 0,
                                        Servidor: '',    
+                                       Login: '', 
                                       };
 
 
@@ -57,7 +58,7 @@ export class ParticipacaoNewModalComponent implements OnInit {
   
         Metatrader : { Id: 0,
                        Servidor: '',    
-                     //Login: '',    
+                       Login: '',    
                      //Senha: '',     
                       },
 

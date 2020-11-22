@@ -16,14 +16,15 @@ export class AuthService {
 
   Login(usuario: Usuario)
   {
-    if (usuario.email === 'quant' && 
-      usuario.senha === 'capital!@#') {
+    if (usuario.Login === 'quant' && 
+      usuario.Senha === 'capital!@#') {
 
       this.usuarioAutenticado = true;
 
       this.mostrarMenuEmitter.emit(true);
-
-      this.router.navigate(['/']);
+      //Redireciona para a propria pagina para reavaliar a autenticacao para esconder o login
+      this.router.navigate(['/login']);
+      
 
     } else {
       this.usuarioAutenticado = false;
@@ -32,8 +33,32 @@ export class AuthService {
     }
   }
 
+  LoginCliente(usuario: Usuario)
+  {
+    //if (usuario.email === 'quant' && 
+     // usuario.senha === 'capital!@#') {
+
+      this.usuarioAutenticado = true;
+
+      this.mostrarMenuEmitter.emit(true);
+      //Redireciona para a propria pagina para reavaliar a autenticacao para esconder o login
+      this.router.navigate(['/dashboard']);
+      
+
+    //} else {
+    //  this.usuarioAutenticado = false;
+
+    //  this.mostrarMenuEmitter.emit(false);
+    //}
+  }
+
   usuarioEstaAutenticado(){
     return this.usuarioAutenticado;
+  }
+
+  render()
+  {
+    this.router.navigate(['/login']);
   }
 
 }
