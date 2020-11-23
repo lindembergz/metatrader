@@ -1,8 +1,11 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { HistoricoRepository } from './historico.repository';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository  } from '@nestjs/typeorm';
+
+import { getManager, getConnection } from 'typeorm';
 
 import { Historico } from './historico.entity';
+import { ClientesHistorico} from '../cliente/cliente.entity';
 
 @Injectable()
 export class HistoricoService {
@@ -27,9 +30,22 @@ export class HistoricoService {
         return historicos;
     }
     
-    async get(id:number): Promise<Historico>{
-        const historico: Historico = await this._historicoRepository.
-        findOne(id, {where: {Status:'Active'}});
+    async get(ClienteId:number): Promise<ClientesHistorico[]>{
+
+        const entityManager = getManager();
+        let  historico: ClientesHistorico[] = await entityManager.query(`select 
+                                            meta.Login , 
+                                            hist.Valor , 
+                                            hist.DataHora
+                                            from 
+                                            clientes cli
+                                            inner join participacoes part
+                                            on cli.Id = part.Cliente_Id
+                                            inner join historicos hist 
+                                            on hist.Metatrade_Id = part.Metatrader_id 
+                                            inner join metatraders meta 
+                                            on meta.Id = hist.Metatrade_Id                                            
+                                            where cli.Id = ${ClienteId}`);
         return historico;
     }
 

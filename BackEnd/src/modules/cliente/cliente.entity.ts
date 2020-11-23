@@ -17,6 +17,15 @@ import { Participacao } from '../Participacao/participacao.entity';
 import { Metatrader } from '../MetaTrader/metatrader.entity';
 
 
+
+export class ClientesHistorico
+{
+    Login: string;  
+    Valor: number; 
+    DataHora:Date
+};
+
+
 @Entity('clientes')
 /*@ViewEntity({ 
     expression:`Select `**/

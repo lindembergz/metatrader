@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'metatraders', component: MetatraderListComponent},
   { path: 'participacoes', component: ParticipacaoListComponent},
 
-  { path: 'dashboard/:Nome', component: DashboardComponent}
+  { path: 'dashboard/:ClienteId', component: DashboardComponent}
   ];
 
 @NgModule({

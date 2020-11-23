@@ -15,6 +15,13 @@ export interface Metatrader {
     Senha?: string; 
 }
 
+export interface ClientesHistorico
+{
+    Login: string;  
+    Valor: number; 
+    DataHora:Date
+};
+
 export interface Cliente {
     Id: number;
     Nome: string;

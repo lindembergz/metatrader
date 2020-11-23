@@ -8,6 +8,7 @@ import { Controller,
     ParseIntPipe } from '@nestjs/common';
 import { HistoricoService } from './historico.service';
 import { Historico } from './historico.entity';
+import { ClientesHistorico} from '../cliente/cliente.entity';
 
 
 @Controller('historicos')
@@ -16,12 +17,12 @@ export class HistoricoController {
 
     constructor( private readonly _historicoService: HistoricoService ) { }
     
-    //@Get(':id')
-    @Get()
-    async gethistoricos():Promise<Historico[]>
-    {
-        const historico = await this._historicoService.getAll()
-        return historico;
+
+    @Get(':ClienteId')
+    async getHistorico(@Param('ClienteId', ParseIntPipe) ClienteId: number):Promise<ClientesHistorico[]>
+    {  
+       const historico: ClientesHistorico[]  = await this._historicoService.get(ClienteId);
+       return historico;
     }
 
     @Post()

@@ -37,24 +37,20 @@ export class LoginComponent implements OnInit {
     console.log(ehCliente);
     if (ehCliente)
     {
-        let c : Observable<Cliente[]>;
+        //let c : Observable<Cliente[]>;
 
-        c = this.autenticadorHttp.create(this.usuario); 
-
-        c.subscribe(response => { this.cliente=response[0]; })
-
-        setTimeout(() => 
-        {
-            console.log(this.cliente);
-            if ( this.cliente != undefined)
-            {
-                this.usuarioAutenticado = true;
-                this.mostrarMenuEmitter.emit(false);
-                this.router.navigate(['/dashboard/'+this.cliente.Nome]);  
-                this.mostrarLogin = !this.loginController.usuarioEstaAutenticado();
-            }
-        },  500); 
-        
+        //c = 
+        this.autenticadorHttp.create(this.usuario)
+                                 .subscribe(response => { this.cliente=response[0]; 
+                                  console.log(this.cliente);
+                                  if ( this.cliente != undefined)
+                                  {
+                                      this.usuarioAutenticado = true;
+                                      this.mostrarMenuEmitter.emit(false);
+                                      this.router.navigate(['/dashboard/'+this.cliente.Id]);  
+                                      this.mostrarLogin = !this.loginController.usuarioEstaAutenticado();
+                                  }}
+                    );       
     }
     else
     {

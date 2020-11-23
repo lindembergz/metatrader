@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prod" : "ng build --prod --output-hashing=none --base-href=./"
+    "prod": "ng build --prod --output-hashing=none --base-href=./"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^7.0.2",
     "@angular/router": "^7.0.2",
     "bootstrap": "^4.1.3",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "http-errors": "^1.8.0",

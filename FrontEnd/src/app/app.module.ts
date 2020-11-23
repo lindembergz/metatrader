@@ -37,6 +37,8 @@ import { MetatraderHttpService } from './Services/metatrader-http.service';
 
 import { DashboardComponent } from './Components/DashBoard/dashboard.component';
 import {AutenticadorHttpService} from './Services/autenticador-http.service';
+import {HistoricoHttpService} from './Services/historico-http.service';
+
 import { LoginController } from './Components/Login/login.controller';
 
 
@@ -77,6 +79,7 @@ import { LoginController } from './Components/Login/login.controller';
 
     ],
     providers: [LoginController, 
+                HistoricoHttpService,
                 AutenticadorHttpService,                
                 ClienteHttpService,
                 MetatraderHttpService, 
