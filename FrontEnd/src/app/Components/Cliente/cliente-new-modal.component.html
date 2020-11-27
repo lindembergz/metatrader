@@ -168,7 +168,8 @@
                                             <input class="form-control" name="UF" type="text" [(ngModel)]="cliente.Endereco.UF">
                                         </div> 
                                         <div class="form-group">
-                                            <label>Cep</label>
+                                            <label>   <a href="javascript:void(0)" (click)="getEndereco(cliente.Endereco.Cep)">Localizar Cep</a>
+                                            </label>
                                             <input class="form-control" name="Cep" type="text" [(ngModel)]="cliente.Endereco.Cep">
                                         </div> 
                                         <div class="form-group">
