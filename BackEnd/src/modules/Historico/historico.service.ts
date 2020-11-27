@@ -18,10 +18,19 @@ export class HistoricoService {
     }
 
 
-    async create(historico:Historico):Promise<Historico> 
+    async create(historico:Historico):Promise<any> 
     {        
-        const saveHistorico = await this._historicoRepository.save(historico);
-        return saveHistorico;
+        const entityManager = getManager();        
+            
+        let SelectSQL = `Select Id From metatraders where Login="${historico.Metatrader.Login}"`;
+
+        let metatrade_id = await entityManager.query(SelectSQL).
+        then( (value)=>{
+            let insertSQL = `insert into historicos( DataHora, Valor , Metatrade_Id) values ( "${historico.DataHora}T00:00:00.0", ${historico.Valor}, ${value[0].Id} )`;
+            const saveHistorico = entityManager.query(insertSQL);
+            return saveHistorico;
+        } );
+ 
     }
 
     async getAll(): Promise<Historico[]>
