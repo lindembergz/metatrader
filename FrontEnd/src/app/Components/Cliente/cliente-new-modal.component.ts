@@ -1,6 +1,3 @@
-
-
-
 import {Component, ElementRef, OnInit, Output, Input, EventEmitter} from '@angular/core';
 import {ClienteHttpService} from '../../Services/cliente-http.service';
 import {Cliente} from '../../models';
@@ -14,9 +11,10 @@ declare const $;
 })
 export class ClienteNewModalComponent implements OnInit {
 
-    //@Input()
+    
+    @Input()
     //cliente: Cliente;
-    cliente: Cliente = {
+    cliente: Cliente= {
         Id: 0,
         Nome: '',    
         Login: '',    
@@ -40,11 +38,11 @@ export class ClienteNewModalComponent implements OnInit {
     }
 
     ngOnInit() {
+      
     }
 
-    addCliente() {           
-        
-        this.clienteHttp.create(this.cliente)
+    addCliente() {     
+       this.clienteHttp.create(this.cliente)
         .subscribe(
             data => {               
                 //this.notifyMessage.success('Sucesso', `O cliente <strong>${this.cliente.nome}</strong> foi criado com sucesso`);
@@ -68,5 +66,24 @@ export class ClienteNewModalComponent implements OnInit {
     private getDivModal(): HTMLElement {
         const nativeElement: HTMLElement = this.element.nativeElement;
         return nativeElement.firstChild.firstChild as HTMLElement;
+    }
+
+    getEndereco(cep: string)
+    {
+        console.log("CEP:" +cep);
+        if (cep!=undefined )
+        {
+            this.clienteHttp.getEndereco(cep).subscribe(value =>
+                {
+                    if (value.bairro!=undefined)
+                    {
+                        this.cliente.Endereco.Bairro = value.bairro; 
+                        this.cliente.Endereco.Logradouro = value.logradouro; 
+                        this.cliente.Endereco.Municipio = value.localidade; 
+                        this.cliente.Endereco.UF = value.uf; 
+                    }
+                }            
+            )
+        }  
     }
 }
