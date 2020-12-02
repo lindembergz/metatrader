@@ -25,9 +25,9 @@ export interface ClientesHistorico
 export interface Cliente {
     Id: number;
     Nome: string;
-    Login?: string;
-    
+    Login?: string;    
     Senha?: string;
+    ConfirmaSenha?: string;
     Celular?: string; 
     DataNascimento?: string;
     Profissao?: string;
@@ -60,6 +60,13 @@ export interface ClienteEndereco {
     Cep?: string;
     Pais?: string;
 }
+
+export interface endereco
+     {bairro: '',  
+     cep:  '', 
+     localidade: '', 
+     logradouro:  '',  
+     uf:  ''};
 
 export interface ClienteBanco {
     Id?: number;

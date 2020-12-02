@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core'; 
 
 import {AppComponent} from './app.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 
 import { SalaryColorDirective } from './Directives/salary-color.directive';
 
@@ -40,6 +40,7 @@ import {AutenticadorHttpService} from './Services/autenticador-http.service';
 import {HistoricoHttpService} from './Services/historico-http.service';
 
 import { LoginController } from './Components/Login/login.controller';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -71,20 +72,26 @@ import { LoginController } from './Components/Login/login.controller';
 
     ],
     imports: [
-        
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        AppRoutingModule,
+         FormsModule, 
+         ReactiveFormsModule,
+         BrowserModule,
+         FormsModule,
+         HttpClientModule,
+         AppRoutingModule,
 
     ],
-    providers: [LoginController, 
+    providers: [
+                LoginController, 
                 HistoricoHttpService,
                 AutenticadorHttpService,                
                 ClienteHttpService,
                 MetatraderHttpService, 
                 ParticipacaoHttpService,
-                LoginComponent],
+                LoginComponent,
+                [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+                ],
+
+
     bootstrap: [AppComponent]
 })
 export class AppModule {

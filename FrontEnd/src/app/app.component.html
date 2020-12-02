@@ -66,21 +66,31 @@
         height: 100%;
       }
     }
-    </style>
-
+</style>
   <header>
-    <h2>Quant capital</h2>
+    <div class="container" >
+      <div class="row"  style="display: flex; justify-content: flex-end" >
+          <div class="col">
+          </div>
+          <div class="col">
+            Quant capital
+          </div>
+          <div class="col-5" >
+            <button type="button" class="btn btn-primary justify-content: flex-end" *ngIf="usuarioAutenticado" (click)="Logout()">Logout</button>
+          </div>
+      </div>
+    </div>
   </header>
   <section>
-    <nav class="navbar-light"  *ngIf="mostrarMenu">
+    <nav class="navbar-light"  *ngIf="usuarioAutenticado && mostrarMenu">
         <ul>
-          <a routerLink="/clientes">Cliente</a>
+          <a routerLink="/clientes">Clientes</a>
         </ul> 
         <ul>
-          <a routerLink="/metatraders">MetaTrader</a>
+          <a routerLink="/metatraders">MetaTraders</a>
         </ul> 
         <ul>
-          <a routerLink="/participacoes">Participação</a>
+          <a routerLink="/participacoes">Participações</a>
         </ul> 
     </nav>
 

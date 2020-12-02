@@ -1,9 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit,  ViewChild} from '@angular/core';
 import {ClienteHttpService} from '../../Services/cliente-http.service';
 import {Cliente} from '../../models';
 import {ClienteNewModalComponent} from './cliente-new-modal.component';
 import {ClienteEditModalComponent} from '../Cliente/cliente-edit-modal.component';
 import {ClienteDeleteModalComponent} from '../Cliente/cliente-delete-modal.component';
+import { AppComponent } from 'src/app/app.component';
+import { LoginController } from '../Login/login.controller';
+
 
 
 @Component({
@@ -35,12 +38,21 @@ export class ClienteListComponent implements OnInit {
     @ViewChild(ClienteDeleteModalComponent) //pegar uma referencia de um elemento
     clienteDeleteModal: ClienteDeleteModalComponent;
 
-    constructor(public clienteHttp: ClienteHttpService) {
+    constructor(public clienteHttp: ClienteHttpService, private appComponent: AppComponent, private loginController: LoginController) {
     }
 
     ngOnInit() {
-        this.getClientes();
-        console.log('ClienteListComponent.ngOnInit');
+        this.getClientes();       
+        console.log('ClienteListComponent.ngOnInit'); 
+
+        if (!this.appComponent.usuarioAutenticado) 
+        {
+            this.appComponent.Logout();
+        }       
+    }
+
+    ngAfterViewInit() {
+        this.appComponent.mostrarMenuForce();                
     }
 
     getClientes() {
@@ -67,10 +79,13 @@ export class ClienteListComponent implements OnInit {
 
     openEditModal(cliente: Cliente) {
         this.clienteToEdit = cliente;
-        this.clienteEditModal.show();
+        this.clienteEditModal.cliente= cliente;
+        this.clienteEditModal.preparar();
+        this.clienteEditModal.show();        
     }
 
     openDestroyModal(cliente: Cliente) {
+       
         this.clienteToDelete = cliente;
         this.clienteDeleteModal.show();
 

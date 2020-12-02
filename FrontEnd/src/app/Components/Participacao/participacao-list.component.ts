@@ -6,6 +6,7 @@ import {ParticipacaoEditModalComponent} from '../Participacao/participacao-edit-
 import {ParticipacaoDeleteModalComponent} from '../Participacao/participacao-delete-modal.component';
 import { ClienteHttpService } from 'src/app/Services/cliente-http.service';
 import { MetatraderHttpService } from 'src/app/Services/metatrader-http.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
     selector: 'participacao-list',
@@ -40,15 +41,23 @@ export class ParticipacaoListComponent implements OnInit {
 
     constructor(public participacaoHttp: ParticipacaoHttpService,
         private clienteHttp:  ClienteHttpService,
-        private metatraderHttp:MetatraderHttpService ) {
-
-        
+        private metatraderHttp:MetatraderHttpService,
+       private appComponent: AppComponent ) {        
     }
 
     ngOnInit() {
         this.getParticipacoes();
         this.getClientes(); 
         this.getMetatraders();
+        //this.appComponent.VerifyAutentication;
+        if (!this.appComponent.usuarioAutenticado) 
+        {
+            this.appComponent.Logout();
+        } 
+    }
+
+    ngAfterViewInit() {
+        this.appComponent.mostrarMenuForce();
     }
 
     getParticipacoes() {

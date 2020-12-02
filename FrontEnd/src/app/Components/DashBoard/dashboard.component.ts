@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import { Chart } from 'Chart.js';
 import { isLineBreak } from 'typescript';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,75 +23,76 @@ export class DashboardComponent implements OnInit {
     clienteHistorico :ClientesHistorico[]=[];
 
     LabelsclienteHistorico:string[]=[];
-    Labelsdatasets:number[]=[];
+    Labelsdatasets:string[]=[];
 
     @ViewChild("meuCanvas") elemento: ElementRef;
 
-    constructor( private router: ActivatedRoute , private loginComponent: LoginComponent, private historicoHttp: HistoricoHttpService )
+    constructor( private router: ActivatedRoute , 
+      private loginComponent: LoginComponent, 
+      private historicoHttp: HistoricoHttpService,
+      private appComponent: AppComponent
+      )
     {
       //this.router.params.subscribe(res => this.NomeCliente= res.Nome);
       this.router.params.subscribe(res => this.ClienteId= res.ClienteId);
     }
 
-    ngOnInit() {      
-        this.historicoHttp.get(this.ClienteId).
-        subscribe(response => { 
-          this.clienteHistorico=response; 
+    ngOnInit() {       
 
-          this.clienteHistorico.forEach( value => {
-            let date: Date = value.DataHora; 
-            this.LabelsclienteHistorico.push( date.toString().substring(0,10) );
-          });
-          this.clienteHistorico.forEach( value => this.Labelsdatasets.push(value.Valor ) );
-     
-          console.log(this.LabelsclienteHistorico);
+        if (!this.appComponent.usuarioAutenticado) 
+        {
+            this.appComponent.Logout();
+        }
+        else
+        {  
 
-          new Chart( this.elemento.nativeElement,
-                      {
-                          type: 'line',
-                          data: 
-                          {
-                                labels: this.LabelsclienteHistorico,
-                                datasets:[{  data: this.Labelsdatasets, borderColor: '#00AEFF',fill: false }]
+          this.historicoHttp.get(this.ClienteId).
+          subscribe(response => 
+          { 
+            this.clienteHistorico=response; 
+
+            this.clienteHistorico.forEach( value => {
+
+              let date: Date = value.DataHora; 
+              this.LabelsclienteHistorico.push( date.toString().substr(8,2)+'/'+
+              date.toString().substr(5,2) +'/'+
+              date.toString().substr(0,4)
+               );
+            });
+            this.clienteHistorico.forEach( value => this.Labelsdatasets.push( value.Valor.toFixed(2) ) );
+      
+            console.log(this.LabelsclienteHistorico);
+
+            new Chart( this.elemento.nativeElement,
+                        {
+                            type: 'line',
+                            data: 
+                            {
+                                  labels: this.LabelsclienteHistorico,
+                                  datasets:[{  data: this.Labelsdatasets, borderColor: '#00AEFF',fill: false }]
+                            },
+                            options: {
+                              legend: {
+                                  display: false                                 
+                              }
                           },
-                          options:
-                          {
-                            lengend:{
-                                        display: false
-                                    },
-                                    scales: {
-                                      yAxes: [{
-                                          stacked: true
-                                      }]
-                                  }
-                          },
-                          lineTension: 100  
+                           /* options:
+                            {
+                              lengend:{
+                                          display: false
+                                      },
+                                      scales: {
+                                        yAxes: [{
+                                            stacked: true
+                                        }]
+                                    }
+                            },*/
+                            lineTension: 100  
 
-                      }
-                    );
-                      
-        /*
-          new Chart(this.elemento.nativeElement, {
-                      type: 'bar',
-                      data: data,
-                      options: options
-                  });
-                */
-        
-        }) 
-    
-                   
-
-          
-       
-
-
-
-        
-
-        
-
-
+                        }
+                      );
+          }) 
+        }
     }
 
 }

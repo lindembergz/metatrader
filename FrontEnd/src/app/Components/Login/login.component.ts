@@ -2,7 +2,6 @@ import { Component,EventEmitter, OnInit, Input,ViewChild } from '@angular/core';
 
 import {Usuario, Cliente } from '../../models';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 
 import {AutenticadorHttpService} from '../../Services/autenticador-http.service';
@@ -20,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
+
   usuario: Usuario = {Login: '', Senha:'', Soucliente:'true',TipoUsuario:'Cliente'};
   @Input()
   cliente: Cliente;
 
   NewCliente : Cliente;
-
 
   mostrarLogin :boolean = true;
 
@@ -35,46 +34,45 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private loginController: LoginController ,
               private autenticadorHttp: AutenticadorHttpService
-              ) { }
+              ) 
+  { }
 
-  ngOnInit() { this.NewCliente = {Id: 0,
-                        Nome: '',    
-                        Login: '',    
-                        Senha: '', 
-                        Celular: '',  
-                        DataNascimento: null, 
-                        Profissao: '', 
-                        Nacionalidade: 'BRASILEIRO', 
-                        EstadoCivil: '', 
-                        Responsavel: '',
-                        Documento:{}, 
-                        Endereco: {Pais:'BRASIL'},      
-                        Conjuge: {}, 
-                        Banco: {}
-                    }; 
+  ngOnInit() { this.NewCliente =  
+               {
+                  Id: 0,
+                  Nome: '',    
+                  Login: '',    
+                  Senha: '', 
+                  Celular: '',  
+                  DataNascimento: null, 
+                  Profissao: '', 
+                  Nacionalidade: 'BRASILEIRO', 
+                  EstadoCivil: '', 
+                  Responsavel: '',
+                  Documento:{}, 
+                  Endereco: {Pais:'BRASIL'},      
+                  Conjuge: {}, 
+                  Banco: {}
+               }; 
+               this.loginController.mostrarMenuEmitter.subscribe(
+                mostrar => this.mostrarLogin = !mostrar
+              );
+              this.usuarioAutenticado = false;
+             
              }
 
-  Login(){
+  Login()
+  {
     let ehCliente :boolean =this.usuario.Soucliente==='true';
     console.log(ehCliente);
     if (ehCliente)
     {
-        this.autenticadorHttp.create(this.usuario)
-                                 .subscribe(response => { this.cliente=response[0]; 
-                                                              console.log(this.cliente);
-                                                              if ( this.cliente != undefined)
-                                                              {
-                                                                  this.usuarioAutenticado = true;
-                                                                  this.mostrarMenuEmitter.emit(false);
-                                                                  this.router.navigate(['/dashboard/'+this.cliente.Id]);  
-                                                                  this.mostrarLogin = !this.loginController.usuarioEstaAutenticado();
-                                                              }
-                                                         }
-                    );       
+      this.loginController.LoginCliente(this.usuario);                
     }
     else
     {
-      this.loginController.Login(this.usuario);
+      //this.usuarioAutenticado = true;
+      this.loginController.Login(this.usuario);      
       this.mostrarLogin = !this.loginController.usuarioEstaAutenticado(); 
     }
   }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable , EventEmitter} from '@angular/core';
 import {Usuario, Cliente} from '../models';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, throwError } from 'rxjs';
@@ -18,6 +18,10 @@ interface ListHttpParams {
     providedIn: 'root'
 })
 export class AutenticadorHttpService {
+
+
+    usuarioAutenticadoMenuEmitter = new EventEmitter<boolean>();
+
 
     private baseUrl = BaseURL+'autenticador';
 

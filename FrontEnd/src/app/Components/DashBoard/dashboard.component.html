@@ -12,7 +12,13 @@
 <table class="table table-striped">
   <tr *ngFor="let Historico of clienteHistorico"> 
      <td> {{Historico.Valor.toFixed(2)}}</td>
-     <td> {{Historico.DataHora.toString().substring(0,10)}}</td>
+     <td> {{
+       Historico.DataHora.toString().substr(8,2)+'/'+
+       Historico.DataHora.toString().substr(5,2) +'/'+
+       Historico.DataHora.toString().substr(0,4)
+
+      
+      }}</td>
   </tr>
 </table>
 

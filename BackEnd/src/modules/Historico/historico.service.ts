@@ -42,19 +42,21 @@ export class HistoricoService {
     async get(ClienteId:number): Promise<ClientesHistorico[]>{
 
         const entityManager = getManager();
-        let  historico: ClientesHistorico[] = await entityManager.query(`select 
-                                            meta.Login , 
-                                            hist.Valor , 
-                                            hist.DataHora
+        let  historico: ClientesHistorico[] = await entityManager.query(
+                                           `select 
+                                                meta.Login , 
+                                                hist.Valor , 
+                                                hist.DataHora
                                             from 
-                                            clientes cli
-                                            inner join participacoes part
-                                            on cli.Id = part.Cliente_Id
-                                            inner join historicos hist 
-                                            on hist.Metatrade_Id = part.Metatrader_id 
-                                            inner join metatraders meta 
-                                            on meta.Id = hist.Metatrade_Id                                            
-                                            where cli.Id = ${ClienteId}`);
+                                                clientes cli
+                                                inner join participacoes part
+                                                on cli.Id = part.Cliente_Id
+                                                inner join historicos hist 
+                                                on hist.Metatrade_Id = part.Metatrader_id 
+                                                inner join metatraders meta 
+                                                on meta.Id = hist.Metatrade_Id                                            
+                                            where 
+                                                cli.Id = ${ClienteId}`);
         return historico;
     }
 

@@ -4,6 +4,7 @@ import {Metatrader} from '../../models';
 import {MetatraderNewModalComponent} from './metatrader-new-modal.component';
 import {MetatraderEditModalComponent} from '../Metatrader/metatrader-edit-modal.component';
 import {MetatraderDeleteModalComponent} from '../Metatrader/metatrader-delete-modal.component';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -35,11 +36,20 @@ export class MetatraderListComponent implements OnInit {
     @ViewChild(MetatraderDeleteModalComponent) //pegar uma referencia de um elemento
     metatraderDeleteModal: MetatraderDeleteModalComponent;
 
-    constructor(public metatraderHttp: MetatraderHttpService) {
+    constructor(public metatraderHttp: MetatraderHttpService, private appComponent: AppComponent) {
     }
 
     ngOnInit() {
         this.getMetatraders();
+        //this.appComponent.VerifyAutentication;
+        if (!this.appComponent.usuarioAutenticado) 
+        {
+            this.appComponent.Logout();
+        } 
+    }
+
+    ngAfterViewInit() {
+        this.appComponent.mostrarMenuForce();
 
     }
 
