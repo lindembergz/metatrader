@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
+  showMessageAlert = false;
 
   usuario: Usuario = {Login: '', Senha:'', Soucliente:'true',TipoUsuario:'Cliente'};
   @Input()
@@ -67,12 +68,19 @@ export class LoginComponent implements OnInit {
     console.log(ehCliente);
     if (ehCliente)
     {
-      this.loginController.LoginCliente(this.usuario);                
+      this.loginController.LoginCliente(this.usuario);  
+      setTimeout(() => {
+        this.showMessageAlert = !this.loginController.usuarioEstaAutenticado();
+      }, 500); 
+                   
     }
     else
-    {
+    {      
       //this.usuarioAutenticado = true;
-      this.loginController.Login(this.usuario);      
+      this.loginController.Login(this.usuario); 
+      setTimeout(() => {
+        this.showMessageAlert = !this.loginController.usuarioEstaAutenticado();
+      }, 500);            
       this.mostrarLogin = !this.loginController.usuarioEstaAutenticado(); 
     }
   }

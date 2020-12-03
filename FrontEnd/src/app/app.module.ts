@@ -25,7 +25,8 @@ import { LoginComponent } from './Components/Login/login.component';
 
 
 import { AlertSuccessComponent } from './Components/alert-success/alert-success.component';
-        
+
+
 import {HttpClientModule} from '@angular/common/http';
 
 import { MyCurrencyPipe } from './Pipes/my-currency.pipe';
@@ -41,6 +42,7 @@ import {HistoricoHttpService} from './Services/historico-http.service';
 
 import { LoginController } from './Components/Login/login.controller';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AlertErroComponent } from './Components/alert-erro/alert-erro.component';
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         ParticipacaoEditModalComponent,
         ParticipacaoDeleteModalComponent,
 
-        AlertSuccessComponent,      
+        AlertSuccessComponent,  
+        AlertErroComponent,    
         MyCurrencyPipe, 
 
         LoginComponent,

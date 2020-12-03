@@ -1,4 +1,9 @@
 <div id="login" *ngIf="mostrarLogin">
+
+    <alert-erro [hidden]="!showMessageAlert" class="row justify-content-center align-items-center">
+        Usuário ou senha inválida !
+    </alert-erro>
+
   <h3 class="text-center text-white pt-5">Login</h3>
   <div class="container">
         <div id="login-row" class="row justify-content-center align-items-center">
