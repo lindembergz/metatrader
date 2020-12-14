@@ -1,27 +1,189 @@
 <style type="text/css">
 /* Chart.js */
-@keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
+@keyframes 
+chartjs-render-animation{
+from{opacity:.99}to{opacity:1}}
+.chartjs-render-monitor{
+  animation:chartjs-render-animation 1ms}
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink{
+position:absolute;
+direction:ltr;
+left:0;
+top:0;
+right:0;
+bottom:0;
+overflow:hidden;
+pointer-events:none;
+visibility:hidden;
+z-index:-1}
+.chartjs-size-monitor-expand>div{
+position:absolute;
+width:1000000px;
+height:1000000px;
+left:0;top:0}
+.chartjs-size-monitor-shrink>div{
+position:absolute;
+width:200%;
+height:200%;
+left:0;
+top:0}
 
 </style>
 
 <div>
-<canvas #meuCanvas id="canvas" style="display: block; width: 500px; height: 161px;" 
- class="chartjs-render-monitor"></canvas>
+<select class="form-control" #filtro name="filtro" (change)="carregarGrafico(filtro.value)" >    
+    <option value="MesAtual">Mês atual</option>
+    <option value="MesPassado">Mês passado</option>
+    <option value="3MesPassado">Últimos 3 Meses</option>
+    <option value="7dias">Últimos 7 dias</option>
+    <option value="01">Janeiro</option>
+    <option value="02">Fevereiro</option>
+    <option value="03">Maço</option>
+    <option value="04">Abril</option>
+    <option value="05">Maio</option>
+    <option value="06">Junho</option>
+    <option value="07">Julho</option>
+    <option value="08">Agosto</option>
+    <option value="09">Setembro</option>
+    <option value="10">Outubro</option>
+    <option value="11">Novembro</option>
+    <option value="12">Dezembro</option>
+  </select> 
+  
 </div>
 
-<table class="table table-striped">
-  <tr><td>Resultado</td> <td>Data</td></tr>
-  <tr *ngFor="let Historico of clienteHistorico"> 
-     <td> {{Historico.Valor.toFixed(2)}}</td>
-     <td> {{
-       Historico.DataHora.toString().substr(8,2)+'/'+
-       Historico.DataHora.toString().substr(5,2) +'/'+
-       Historico.DataHora.toString().substr(0,4)
+<div class="table-responsive">
+  <canvas #meuCanvas id="canvas" style="display: block; width: 500px; height: 161px;" class="chartjs-render-monitor"></canvas>
+</div>
+<p>
 
+<div class="table-responsive">
+  <table>
+    <tr>     
+      <td colspan="2"><canvas #meuCanvas1 id="canvas" 
+        class="chartjs-render-monitor" style="background-color:lavender;width: 300px; height: 200px;"></canvas>
+      </td>    
+      <td colspan="2"><canvas #meuCanvas2 id="canvas" 
+        class="chartjs-render-monitor" style="background-color:lavender;width: 300px; height: 200px;"></canvas>
+      </td>  
+      <td colspan="2"><canvas #meuCanvas3 id="canvas" 
+        class="chartjs-render-monitor" style="background-color:lavender;width: 300px; height: 200px;"></canvas>
+      </td>  
+      <td colspan="2"><canvas #meuCanvas4 id="canvas" 
+        class="chartjs-render-monitor" style="background-color:lavender;width: 300px; height: 200px;"></canvas>
+      </td> 
+      <td colspan="2"><canvas #meuCanvas5 id="canvas" 
+        class="chartjs-render-monitor" style="background-color:lavender;width: 300px; height: 200px;"></canvas>
+      </td> 
+     
+    </tr>    
+    <tr><td><br></td></tr>
+    <tr>
       
-      }}</td>
-  </tr>
-</table>
+      
+      <td colspan="2" *ngIf="clienteHistorico1.length>0">
+       <table class="table table-sm table-light text-dark table-striped table-hover">
+        <tr >
+          <td >Valor</td> 
+          <td >Data</td>
+        </tr>
+         <tr *ngFor="let Historico of clienteHistorico1">
+            <td> {{Historico.Valor.toFixed(2)}}</td>
+            <td> {{
+                  Historico.DataHora.toString().substr(8,2)+'/'+
+                  Historico.DataHora.toString().substr(5,2) +'/'+
+                  Historico.DataHora.toString().substr(0,4)      
+                 }}
+            </td>
+         </tr>
+       </table>
+      </td>
+ 
+
+      <td colspan="2" *ngIf="clienteHistorico2.length>0"> 
+          <table class="table table-sm table-light text-dark table-striped table-hover">
+            <tr >
+              <td >Valor</td> 
+              <td >Data</td>
+            </tr>
+            <tr *ngFor="let Historico of clienteHistorico2">
+            <td>{{Historico.Valor.toFixed(2)}}</td>
+            <td>{{
+                  Historico.DataHora.toString().substr(8,2)+'/'+
+                  Historico.DataHora.toString().substr(5,2) +'/'+
+                  Historico.DataHora.toString().substr(0,4)
+                }}
+            </td>
+            </tr>
+          </table>
+      </td>
+
+      <td colspan="2" *ngIf="clienteHistorico3.length>0"> 
+        <table class="table table-sm table-light text-dark table-striped table-hover">
+          <tr >
+            <td >Valor</td> 
+            <td >Data</td>
+          </tr>
+          <tr *ngFor="let Historico of clienteHistorico3">
+          <td>{{Historico.Valor.toFixed(2)}}</td>
+          <td>{{
+                Historico.DataHora.toString().substr(8,2)+'/'+
+                Historico.DataHora.toString().substr(5,2) +'/'+
+                Historico.DataHora.toString().substr(0,4)
+              }}
+          </td>
+          </tr>
+        </table>
+     </td>
+
+     <td colspan="2" *ngIf="clienteHistorico4.length>0"> 
+      <table class="table table-sm table-light text-dark table-striped table-hover">
+        <tr >
+          <td >Valor</td> 
+          <td >Data</td>
+        </tr>
+        <tr *ngFor="let Historico of clienteHistorico4">
+        <td>{{Historico.Valor.toFixed(2)}}</td>
+        <td>{{
+              Historico.DataHora.toString().substr(8,2)+'/'+
+              Historico.DataHora.toString().substr(5,2) +'/'+
+              Historico.DataHora.toString().substr(0,4)
+            }}
+        </td>
+        </tr>
+      </table>
+     </td>
+
+     <td colspan="2" *ngIf="clienteHistorico5.length>0"> 
+      <table class="table table-sm table-light text-dark table-striped table-hover">
+        <tr >
+          <td >Valor</td> 
+          <td >Data</td>
+        </tr>
+        <tr *ngFor="let Historico of clienteHistorico5">
+        <td>{{Historico.Valor.toFixed(2)}}</td>
+        <td>{{
+              Historico.DataHora.toString().substr(8,2)+'/'+
+              Historico.DataHora.toString().substr(5,2) +'/'+
+              Historico.DataHora.toString().substr(0,4)
+            }}
+        </td>
+        </tr>
+      </table>
+     </td>
+
+
+     </tr>
+  </table> 
+</div>
+
+
+
+
+
+
 
 
 

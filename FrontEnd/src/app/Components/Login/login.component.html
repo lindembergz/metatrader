@@ -21,8 +21,21 @@
                       <div class="form-group">
                           <label for="Soucliente" class="text-info"><span>Sou cliente investidor</span> 
                           <span><input id="soucliente" name="Soucliente" type="checkbox" [(ngModel)]="usuario.Soucliente"></span></label><br>
+                         
+                         
+                         <!--   <label for="Soucliente" class="text-info">
+                                <span> 
+                                <a routerLink="/recuperar">Esqueci minha senha</a>
+                                </span> 
+                            </label>-->
+                            <router-outlet></router-outlet>                 
+
+                           
+                          <br>
                           <input type="button" name="submit" class="btn btn-info btn-md" value="Entrar" (click)="Login()">
                       </div>
+                     
+                      
                       <div class="form-group">
                       
                       </div>

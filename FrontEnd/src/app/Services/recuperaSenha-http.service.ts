@@ -1,27 +1,26 @@
-import {Injectable} from '@angular/core';
-import {ClientesHistorico} from '../models';
-import {HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Injectable , EventEmitter} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import {Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {BaseURL} from '../constants';
 
 @Injectable({
     providedIn: 'root'
 })
-export class HistoricoHttpService {
+export class RecuperaSenhaHttpService {
 
-    private baseUrl = BaseURL+'historicos';
+    private baseUrl = BaseURL+'recuperar';
 
     constructor(private http: HttpClient) {
     }
 
 
-    get(ClienteId: number, Periodo: string): Observable<ClientesHistorico[]> {
-        return this.http.get<ClientesHistorico[]>(`${this.baseUrl}/${ClienteId}/${Periodo}`)
-            .pipe(
-                catchError((responseError) => this.handleError(responseError))
-            );
+    recuperarSenha(email: string): Observable<any> {
+         return this.http.post<any>(this.baseUrl, {Email:email})
+                .pipe( catchError( ( responseError ) => this.handleError( responseError ) ) );      
+ 
     }
+
 
     private handleError(error: HttpErrorResponse) {
         console.log(error);

@@ -1,5 +1,4 @@
 import { Component,EventEmitter, OnInit, Input,ViewChild } from '@angular/core';
-
 import {Usuario, Cliente } from '../../models';
 import { Router } from '@angular/router';
 

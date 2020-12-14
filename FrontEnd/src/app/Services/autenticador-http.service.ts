@@ -32,10 +32,15 @@ export class AutenticadorHttpService {
     create(usuario: Usuario): Observable<Cliente[]> {
 
         console.log('LoginCliente(usuario: Usuario)'); 
+        if (usuario.Login!="" && usuario.Senha!="")
+        {
          return this.http.post<Cliente[]>(this.baseUrl, usuario)
                 .pipe(
                     catchError((responseError) => this.handleError(responseError))
                 );      
+        }
+        else
+        return undefined;
     }
 
     get(usuario: Usuario):  Observable<string> {
@@ -44,6 +49,15 @@ export class AutenticadorHttpService {
          return  this.http.get<string>(`${this.baseUrl}`);
          
     }
+
+    recuperarSenha(email: string): Observable<any> {
+
+        return this.http.post<any>(this.baseUrl, email)
+               .pipe(
+                   catchError((responseError) => this.handleError(responseError))
+               );      
+
+   }
 
     private handleError(error: HttpErrorResponse) {
         console.log(error);

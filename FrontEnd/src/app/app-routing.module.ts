@@ -8,6 +8,7 @@ import { LoginComponent } from './Components/Login/login.component';
 import { AppComponent } from './app.component';
 
 import { DashboardComponent } from './Components/DashBoard/dashboard.component';
+import { RecuperadorSenhaComponent } from './Components/RecuperarSenha/recuperarSenha.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
                         { path: 'clientes', component: ClienteListComponent},                    
                         { path: 'metatraders', component: MetatraderListComponent},
                         { path: 'participacoes', component: ParticipacaoListComponent},
-                        { path: 'dashboard/:ClienteId', component: DashboardComponent}
+                        { path: 'dashboard/:ClienteId', component: DashboardComponent},
+                        { path: 'recuperar', component: RecuperadorSenhaComponent}
                        ]; 
 
 @NgModule({

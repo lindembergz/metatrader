@@ -43,6 +43,9 @@ import {HistoricoHttpService} from './Services/historico-http.service';
 import { LoginController } from './Components/Login/login.controller';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AlertErroComponent } from './Components/alert-erro/alert-erro.component';
+import { OrderPipe } from './pipes/order.pipe';
+import {RecuperadorSenhaComponent} from './Components/RecuperarSenha/recuperarSenha.component';
+import { ClienteDetailModalComponent } from './Components/Cliente/cliente-detail-modal.component';
 
 
 @NgModule({
@@ -72,9 +75,14 @@ import { AlertErroComponent } from './Components/alert-erro/alert-erro.component
         LoginComponent,
         
         DashboardComponent,
+        OrderPipe,
+        RecuperadorSenhaComponent,
+
+        ClienteDetailModalComponent,
 
     ],
     imports: [
+         
          FormsModule, 
          ReactiveFormsModule,
          BrowserModule,
@@ -89,7 +97,7 @@ import { AlertErroComponent } from './Components/alert-erro/alert-erro.component
                 AutenticadorHttpService,                
                 ClienteHttpService,
                 MetatraderHttpService, 
-                ParticipacaoHttpService,
+                ParticipacaoHttpService,           
                 LoginComponent,
                 [{provide: LocationStrategy, useClass: HashLocationStrategy}]
                 ],
