@@ -18,10 +18,12 @@ export class HistoricoController {
     constructor( private readonly _historicoService: HistoricoService ) { }
     
 
-    @Get(':ClienteId')
-    async getHistorico(@Param('ClienteId', ParseIntPipe) ClienteId: number):Promise<ClientesHistorico[]>
+    @Get(':ClienteId/:Periodo')
+    async getHistorico(@Param('ClienteId', ParseIntPipe) ClienteId: number,
+                       @Param('Periodo') Periodo: string,
+    ):Promise<ClientesHistorico[]>
     {  
-       const historico: ClientesHistorico[]  = await this._historicoService.get(ClienteId);
+       const historico: ClientesHistorico[]  = await this._historicoService.get(ClienteId,Periodo);
        return historico;
     }
 

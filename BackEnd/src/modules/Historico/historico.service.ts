@@ -39,7 +39,25 @@ export class HistoricoService {
         return historicos;
     }
     
-    async get(ClienteId:number): Promise<ClientesHistorico[]>{
+    async get(ClienteId:number, Periodo: string ): Promise<ClientesHistorico[]>{
+
+        let periodo: string;
+        if (Periodo == "MesAtual")
+        {
+            periodo= " ( month(hist.DataHora)=month(CURDATE()) and YEAR(hist.DataHora)= YEAR(CURDATE()) ) ";
+        } else if (Periodo == "MesPassado")
+        {
+            periodo= " ( month(hist.DataHora)=month(CURDATE())-1 and YEAR(hist.DataHora)= YEAR(CURDATE()) ) ";
+        } else if (Periodo == "3MesPassado")
+        {
+            periodo= " ( month(hist.DataHora)>=month(CURDATE())-3 and YEAR(hist.DataHora)= YEAR(CURDATE()) ) ";
+        }else if (Periodo == "7dias")
+        {
+            periodo= " ( hist.DataHora >= CURDATE()-7 )";
+        }else
+        {
+            periodo= ` ( month(hist.DataHora)= ${Periodo} and YEAR(hist.DataHora)= YEAR(CURDATE())  )`;
+        }        
 
         const entityManager = getManager();
         let  historico: ClientesHistorico[] = await entityManager.query(
@@ -50,13 +68,15 @@ export class HistoricoService {
                                             from 
                                                 clientes cli
                                                 inner join participacoes part
-                                                on cli.Id = part.Cliente_Id
-                                                inner join historicos hist 
-                                                on hist.Metatrade_Id = part.Metatrader_id 
+                                                on cli.Id = part.Cliente_Id                                               
                                                 inner join metatraders meta 
-                                                on meta.Id = hist.Metatrade_Id                                            
+                                                on meta.Id = part.Metatrader_id  
+                                                left join historicos hist 
+                                                on hist.Metatrade_Id = part.Metatrader_id 
+                                                                                           
                                             where 
-                                                cli.Id = ${ClienteId}`);
+                                                cli.Id = ${ClienteId} and ${periodo} 
+                                                `);
         return historico;
     }
 
