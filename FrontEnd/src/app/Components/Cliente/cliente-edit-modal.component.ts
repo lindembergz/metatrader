@@ -7,7 +7,7 @@ declare const $;
 
 @Component({
     selector: 'cliente-edit-modal',
-    templateUrl: './cliente-edit-modal.component.html',
+    templateUrl: './cliente-detail-modal.component.html',
     styleUrls: ['./cliente-modal.component.css']
 })
 export class ClienteEditModalComponent implements OnInit {
@@ -28,7 +28,7 @@ export class ClienteEditModalComponent implements OnInit {
            
     }
 
-    EditCliente() {      
+    SaveCliente() {      
         this.clienteHttp.update(this.cliente)
         .subscribe(
             data => {               
@@ -74,9 +74,7 @@ export class ClienteEditModalComponent implements OnInit {
 
     }
 
-    show() {
-
-        
+    show() {       
 
         const divModal = this.getDivModal();
         $(divModal).modal('show');
@@ -85,5 +83,24 @@ export class ClienteEditModalComponent implements OnInit {
     private getDivModal(): HTMLElement {
         const nativeElement: HTMLElement = this.element.nativeElement;
         return nativeElement.firstChild.firstChild as HTMLElement;
+    }
+
+    getEndereco(cep: string)
+    {
+        console.log("CEP:" +cep);
+        if (cep!=undefined )
+        {
+            this.clienteHttp.getEndereco(cep).subscribe(value =>
+                {
+                    if (value.bairro!=undefined)
+                    {
+                        this.cliente.Endereco.Bairro = value.bairro; 
+                        this.cliente.Endereco.Logradouro = value.logradouro; 
+                        this.cliente.Endereco.Municipio = value.localidade; 
+                        this.cliente.Endereco.UF = value.uf; 
+                    }
+                }            
+            )
+        }  
     }
 }

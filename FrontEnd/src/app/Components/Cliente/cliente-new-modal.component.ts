@@ -7,7 +7,7 @@ declare const $;
 
 @Component({
     selector: 'cliente-new-modal',
-    templateUrl: './cliente-new-modal.component.html',
+    templateUrl: './cliente-detail-modal.component.html',
     styleUrls: ['./cliente-modal.component.css']
 })
 export class ClienteNewModalComponent implements OnInit {
@@ -72,7 +72,7 @@ export class ClienteNewModalComponent implements OnInit {
     
     }
 
-    addCliente() {     
+    SaveCliente() {     
 
        this.clienteHttp.create(this.cliente)
         .subscribe(
