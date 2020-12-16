@@ -45,8 +45,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AlertErroComponent } from './Components/alert-erro/alert-erro.component';
 import { OrderPipe } from './pipes/order.pipe';
 import {RecuperadorSenhaComponent} from './Components/RecuperarSenha/recuperarSenha.component';
-import { ClienteDetailModalComponent } from './Components/Cliente/cliente-detail-modal.component';
-
 
 @NgModule({
     declarations: [
@@ -78,7 +76,7 @@ import { ClienteDetailModalComponent } from './Components/Cliente/cliente-detail
         OrderPipe,
         RecuperadorSenhaComponent,
 
-        ClienteDetailModalComponent,
+
 
     ],
     imports: [
